@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+  <TargetFramework>net6.0-windows</TargetFramework>
+  <RootNamespace>VancouverSkyline</RootNamespace>
+  <Nullable>enable</Nullable>
+  <OutputType>Library</OutputType>
+  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Remove="EffectPluginIcon.png" />
+	<None Remove="VancouverSkyline.sample.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<EmbeddedResource Include="EffectPluginIcon.png" />
+	<EmbeddedResource Include="VancouverSkyline.sample.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Packaging" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PaintDotNet.Base">
+      <HintPath>..\..\..\..\..\Program Files\paint.net\PaintDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PaintDotNet.Core">
+      <HintPath>..\..\..\..\..\Program Files\paint.net\PaintDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PaintDotNet.Data">
+      <HintPath>..\..\..\..\..\Program Files\paint.net\PaintDotNet.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PaintDotNet.Effects">
+      <HintPath>..\..\..\..\..\Program Files\paint.net\PaintDotNet.Effects.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+	<PropertyGroup>
+	  <MinimumPlatformVersion>7.0</MinimumPlatformVersion>
+	  <PackageIcon>PluginBrowser.sample.png</PackageIcon>
+	  <Authors>AndrewDavid</Authors>
+	  <Description>A NET 5.0 Template for use with Paint.NET </Description>
+	  <Copyright>@2021</Copyright>
+	  <PackageProjectUrl>http://www.getpaint.net/redirect/plugins.html</PackageProjectUrl>
+	  <BaseOutputPath>C:\Users\Andrew\Documents\CSSFiles\PaintNetPlugins</BaseOutputPath>
+	  <Company>AndrewDavid</Company>
+	  <Product>GoodStarryNight</Product>
+	  <FileVersion>1.1.0.0</FileVersion>
+	  <AssemblyVersion>1.1.0.0</AssemblyVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <PlatformTarget>AnyCPU</PlatformTarget>
+	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <PlatformTarget>AnyCPU</PlatformTarget>
+	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy &quot;$(TargetPath)&quot; &quot;C:\Users\Andrew\Documents\paint.net App Files\Effects&quot; /y" />
+	</Target>
+</Project>
